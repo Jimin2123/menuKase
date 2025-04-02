@@ -43,6 +43,16 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 }
 
+def querydslDir = "src/main/generated"
+
+sourceSets {
+    main.java.srcDirs += querydslDir
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.generatedSourceOutputDirectory = file(querydslDir)
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
